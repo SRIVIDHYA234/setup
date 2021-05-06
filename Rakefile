@@ -1,0 +1,24 @@
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
+
+require_relative "config/application"
+
+Rails.application.load_tasks
+
+
+require 'rake'
+
+# Rake Fix Code start
+# NOTE: change 'Anelis' to your app's module name (see config/application.rb)
+module ::Anelis
+  class Application
+    include Rake::DSL
+  end
+end
+
+module ::RakeFileUtils
+  extend Rake::FileUtilsExt
+end
+# Rake Fix Code end
+
+MyApp::Application.load_tasks
